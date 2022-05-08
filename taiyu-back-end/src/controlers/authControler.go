@@ -36,3 +36,25 @@ func Register(c *fiber.Ctx) error{
 	
 	return c.JSON(user)
 }
+func Login(c *fiber.Ctx) error{
+	var data map[string]string
+	err := c.BodyParser(&data)
+	if err != nil{
+		return err
+	}
+	var user models.User
+	database.DB.Where("email = ?", data["email"]).First(&user)
+	if user.Id == 0{
+		c.Status(fiber.StatusBadGateway)
+		return c.JSON(fiber.Map{
+			"message": "Invalid Credentials",
+		})
+	}
+	if err:= bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(data["password"])); err != nil{
+		c.Status(fiber.StatusBadGateway)
+		return c.JSON(fiber.Map{
+			"message":"Invalid Credentials",
+		})
+	}
+	return c.JSON(user)
+}
