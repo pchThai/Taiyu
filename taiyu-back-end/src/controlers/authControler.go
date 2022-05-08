@@ -1,9 +1,12 @@
 package controlers
 
 import (
+	"strconv"
 	"taiyu-back-end/src/database"
 	"taiyu-back-end/src/models"
+	"time"
 
+	"github.com/dgrijalva/jwt-go/v4"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -56,5 +59,26 @@ func Login(c *fiber.Ctx) error{
 			"message":"Invalid Credentials",
 		})
 	}
-	return c.JSON(user)
+	payload := jwt.StandardClaims{
+			Subject: strconv.Itoa(int(user.Id)),
+			ExpiresAt: jwt.NewTime(float64(time.Now().Add(time.Hour *24 ).Unix())),
+	}
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, payload).SignedString([]byte("secrect"));	
+	if err != nil{
+		return c.JSON(fiber.Map{
+			"message": "Invalid Credentials",
+		})
+	}
+	
+	cookie := fiber.Cookie{
+		Name: "jwt",
+		Value: token,
+		Expires: time.Now().Add(time.Hour *24 ),
+		HTTPOnly: true,
+
+	}
+	c.Cookie(&cookie)
+	return c.JSON(fiber.Map{
+		"message":"Succes",
+	})
 }
