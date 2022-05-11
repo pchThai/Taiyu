@@ -1,13 +1,15 @@
 package models
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+)
 type User struct{
-	Id uint
-	FristName string
-	LastName string
-	Password string
-	Email string
-	IsAmbassador bool
+	Id uint `json:"id"`
+	FristName string 	`json:"firstname"`
+	LastName string	  	`json:"lastname"`	
+	Password string	 	`json:"-"`
+	Email string		`json:"email" gorm:"unique" `
+	IsAmbassador bool 	`json:"-"`
 }
 func (user *User) SetPassword(password string){
 	hashPassword,_ := bcrypt.GenerateFromPassword([]byte(password),12) 
