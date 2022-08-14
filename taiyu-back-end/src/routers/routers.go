@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"taiyu-back-end/middlewares"
 	"taiyu-back-end/src/controlers"
 
 	"github.com/gofiber/fiber/v2"
@@ -10,6 +11,7 @@ func Setup(app *fiber.App){
 	admin 	:= api.Group("admin")
 	admin.Post("/register", controlers.Register)
 	admin.Post("/login",controlers.Login)
-	admin.Get("/user", controlers.User)
-	admin.Post("/logout",controlers.Logout)
+	adminAuthenticated := admin.Use(middlewares.IsAuthenticated)
+	adminAuthenticated.Get("/user", controlers.User)
+	adminAuthenticated.Post("/logout",controlers.Logout)
 }

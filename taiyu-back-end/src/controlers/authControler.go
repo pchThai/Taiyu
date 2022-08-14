@@ -2,6 +2,7 @@ package controlers
 
 import (
 	"strconv"
+	"taiyu-back-end/middlewares"
 	"taiyu-back-end/src/database"
 	"taiyu-back-end/src/models"
 	"time"
@@ -84,20 +85,10 @@ func Login(c *fiber.Ctx) error{
 	})
 }
 func User(c *fiber.Ctx) error{
-	cookie := c.Cookies("jwt")
-	token, err := jwt.ParseWithClaims(cookie, &jwt.StandardClaims{}, func(t *jwt.Token) (interface{}, error) {
-		return []byte("secrect"), nil
-	})
-	if err != nil || !token.Valid {
-		c.Status(fiber.StatusUnauthorized)
-		return c.JSON(fiber.Map{
-			"message":"unathorized",
-		})
-	}
-	payload := token.Claims.( *jwt.StandardClaims)
+	id , _ := middlewares.GetUserID(c)
 
 	var user models.User
-	database.DB.Where("id = ?", payload.Subject).First(&user)
+	database.DB.Where("id = ?",id).First(&user)
 
 	return c.JSON(user)
 }
