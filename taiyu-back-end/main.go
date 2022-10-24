@@ -12,7 +12,8 @@ func main() {
 
 	database.Connect()
 	database.AutoMigrate()
-
+	database.SetupRedis()
+	database.SetupCacheChanel()
     app := fiber.New()
 
 	app.Use(cors.New(cors.Config{
