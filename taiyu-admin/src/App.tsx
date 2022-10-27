@@ -1,10 +1,10 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Users } from './pages/Users';
 import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-
+import Register from './pages/Register';
 function App() {
   return (
     <div className="App">
@@ -18,5 +18,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

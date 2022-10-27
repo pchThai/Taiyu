@@ -5,13 +5,13 @@ export const Users = () => {
   return (
     <div>
       <Nav/>  
-      <div class="container-fluid">
-        <div class="row">
+      <div className="container-fluid">
+        <div className="row">
         <Menu/>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <h2>Section title</h2>
-            <div class="table-responsive">
-              <table class="table table-striped table-sm">
+            <div className="table-responsive">
+              <table className="table table-striped table-sm">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
