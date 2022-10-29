@@ -3,10 +3,11 @@ import Nav from '../components/Nav'
 import Menu from '../components/Menu'
 import { Layout } from '../components/Layout'
 import {User} from "../models/user"
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
+import { Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow } from '@material-ui/core'
 export const Users = () => {
-  const [user,setUser] = useState<User[]>([]);
-  
+  const [users,setUser] = useState<User[]>([]);
+  const [page, setPage] = useState(0);
+  const perPage = 10;  
   useEffect(()=>{
       (async () => {
         await fetch('http://localhost:8000/api/admin/ambassador',{credentials:'include'})
@@ -27,7 +28,7 @@ export const Users = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {user.map(user => {
+            {users.slice(page*perPage,(page + 1)*perPage).map(user => {
               return (
                 <TableRow key={user.id}>                  
                   <TableCell>{user.id }</TableCell>
@@ -37,6 +38,9 @@ export const Users = () => {
                 </TableRow>
               )})}          
           </TableBody>
+          <TableFooter>
+            <TablePagination count={users.length} page={page}  onPageChange={(e,newPage)=>setPage(newPage)} rowsPerPage={perPage} rowsPerPageOptions={[]}/> 
+          </TableFooter>
         </Table>
       </Layout>  
     </div>
