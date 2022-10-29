@@ -13,6 +13,7 @@ function App() {
             <Route  path="/" element={<Users />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
+            <Route path="/user" element={<Users />}/>
           </Routes>
         </BrowserRouter>
     </div>

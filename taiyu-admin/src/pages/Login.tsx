@@ -21,7 +21,7 @@ export const Login = () =>{
               setRedirect(true)         
   }
   if(redirect){
-    return <Navigate to={'/user'}/>
+    return <Navigate to={'/'}/>
   }
   return (
     
