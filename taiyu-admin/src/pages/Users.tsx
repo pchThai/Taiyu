@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import Menu from '../components/Menu'
 import { Layout } from '../components/Layout'
 import {User} from "../models/user"
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
 export const Users = () => {
   const [user,setUser] = useState<User[]>([]);
   
@@ -16,27 +17,27 @@ export const Users = () => {
   return (
     <div>
       <Layout>    
-        <table className="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell >#</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {user.map(user => {
               return (
-                <tr key={user.id}>                  
-                  <td>{user.id }</td>
-                  <td>{user.firstname}</td>
-                  <td>{user.email}</td>
-                  <td>text</td>
-                </tr>
+                <TableRow key={user.id}>                  
+                  <TableCell>{user.id }</TableCell>
+                  <TableCell>{user.firstname}</TableCell>
+                  <TableCell>{user.email}</TableCell>
+                  <TableCell>text</TableCell>
+                </TableRow>
               )})}          
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </Layout>  
     </div>
   )
