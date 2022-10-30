@@ -3,7 +3,8 @@ import Nav from '../components/Nav'
 import Menu from '../components/Menu'
 import { Layout } from '../components/Layout'
 import {User} from "../models/user"
-import { Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow } from '@material-ui/core'
+import { Button, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow } from '@material-ui/core'
+import { useParams } from 'react-router-dom'
 export const Users = () => {
   const [users,setUser] = useState<User[]>([]);
   const [page, setPage] = useState(0);
@@ -16,7 +17,6 @@ export const Users = () => {
       })()
   },[])
   return (
-    <div>
       <Layout>    
         <Table>
           <TableHead>
@@ -34,7 +34,9 @@ export const Users = () => {
                   <TableCell>{user.id }</TableCell>
                   <TableCell>{user.firstname}</TableCell>
                   <TableCell>{user.email}</TableCell>
-                  <TableCell>text</TableCell>
+                  <TableCell>
+                    <Button  variant='contained' color="primary" href={`users/${user.id}/links`}>View</Button>
+                  </TableCell>
                 </TableRow>
               )})}          
           </TableBody>
@@ -43,7 +45,6 @@ export const Users = () => {
           </TableFooter>
         </Table>
       </Layout>  
-    </div>
   )
 }
 
