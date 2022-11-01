@@ -10,6 +10,10 @@ const Menu = () =>{
             <span data-feather="home" className="align-text-bottom"></span>
             User
           </NavLink >
+          <NavLink className="nav-link active" aria-current="page" to={'/products'}>
+            <span data-feather="home" className="align-text-bottom"></span>
+            Product
+          </NavLink >
         </li>
       </ul>
     </div>

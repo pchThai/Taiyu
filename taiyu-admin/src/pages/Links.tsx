@@ -34,7 +34,7 @@ export const Links = (props: any) => {
                   <TableCell>{link.id }</TableCell>
                   <TableCell>{link.code}</TableCell>
                   <TableCell>{link.order.length}</TableCell>
-                  <TableCell>text</TableCell>
+                  <TableCell>{link.order.reduce((s,o) => s + o.total,0)}</TableCell>
                 </TableRow>
               )})}          
           </TableBody>
