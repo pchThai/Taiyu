@@ -8,11 +8,15 @@ const Menu = () =>{
         <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to={'/users'}>
             <span data-feather="home" className="align-text-bottom"></span>
-            User
+            Users
           </NavLink >
           <NavLink className="nav-link active" aria-current="page" to={'/products'}>
             <span data-feather="home" className="align-text-bottom"></span>
-            Product
+            Products
+          </NavLink >
+          <NavLink className="nav-link active" aria-current="page" to={'/orders'}>
+            <span data-feather="home" className="align-text-bottom"></span>
+            Orders
           </NavLink >
         </li>
       </ul>

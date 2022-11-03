@@ -9,6 +9,7 @@ import { RedirectToUsers } from './components/RedirectToUsers';
 import { Links } from './pages/Links';
 import { Products } from './pages/products/Products';
 import { ProductForm } from './pages/products/ProductForm';
+import { Orders } from './pages/Orders';
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
             <Route path='/users/:id/links' element={<Links />}/>
             <Route path='/products' element={<Products />}/>
             <Route path='/products/create' element={<ProductForm />}/>
+            <Route path='/orders' element={<Orders />}/>
           </Routes>
         </BrowserRouter>
     </div>
