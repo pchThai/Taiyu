@@ -10,6 +10,7 @@ import { Links } from './pages/Links';
 import { Products } from './pages/products/Products';
 import { ProductForm } from './pages/products/ProductForm';
 import { Orders } from './pages/Orders';
+import { Profile } from './pages/Profile';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
             <Route  path="/" element={<RedirectToUsers />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
+            <Route path="/profile" element={<Profile />}/>
             <Route path="/users" element={<Users />}/>
             <Route path='/users/:id/links' element={<Links />}/>
             <Route path='/products' element={<Products />}/>
