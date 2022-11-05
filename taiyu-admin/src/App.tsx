@@ -22,6 +22,7 @@ function App() {
             <Route path='/users/:id/links' element={<Links />}/>
             <Route path='/products' element={<Products />}/>
             <Route path='/products/create' element={<ProductForm />}/>
+            <Route path='/products/:id/edit' element={<ProductForm />}/>
             <Route path='/orders' element={<Orders />}/>
           </Routes>
         </BrowserRouter>
